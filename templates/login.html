@@ -1,0 +1,63 @@
+{{ define "login" }}
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <link rel="icon" href="/static/images/gopher_logo.png">
+    <script src="https://cdn.auth0.com/js/auth0/9.5.1/auth0.min.js"></script>
+    <style>
+      .container {
+        width: 800px;
+        margin: 0 auto;
+        padding-top: 100px;
+      }
+      .login-btn {
+        width: 300px;
+        height: 100px;
+        margin: 0 auto;
+        padding: 5px;
+        background-color: #ff751a;
+        border: 5px solid #ff751a;
+        border-radius: 20px;
+        color: #fff;
+        font-size: 25px;
+        display: block;
+        letter-spacing: 2px;
+      }
+      .login-btn:hover{
+        cursor: pointer;
+        background-color: #e56917;
+        border: 5px solid #e56917;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <button type="button" id="login-btn" class="login-btn">Login</button>
+    </div>
+  </body>
+<script>
+const init = () => {
+  const webAuth = new auth0.WebAuth({
+    domain: '{{ .Domain }}',
+    clientID: '{{ .ClientID }}',
+    responseType: 'token id_token',
+    scope: 'openid',
+    redirectUri: window.location.href
+  });
+
+  const loginBtn = document.getElementById('login-btn')
+  loginBtn.addEventListener('click', () => {
+    console.log('login')
+    webAuth.authorize()
+  })
+}
+
+ window.addEventListener('load', init)
+
+
+</script>
+</html>
+
+{{ end }}

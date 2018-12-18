@@ -1,0 +1,7 @@
+export APP_ROOT=$(pwd)
+export APP_HOST=localhost
+export APP_PORT=8123
+export GCP_PROJECT_ID=""
+export GCP_CREDENTIAL=""
+export AUTH0_CLIENT_ID=""
+export AUTH0_DOMAIN=""
